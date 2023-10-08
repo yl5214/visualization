@@ -31,5 +31,16 @@ weather_df =
 Let's make a plot!
 ```{r}
 ggplot(weather_df, aes(x = tmin, y= tmax))
+  geom_point()
+```
+
+
+Pipes and stuff
+
+```{r}
+weather_df |> 
+  filter(name =='CentralPark_NY') |> 
+  ggplot(aes(x= tmin, y =tmax)) +
+           geom_point()
 ```
 
