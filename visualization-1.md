@@ -240,3 +240,26 @@ ggplot(weather_df, aes(x=tmax, y=name))+
     ## (`stat_density_ridges()`).
 
 ![](visualization-1_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+
+## saving and embedding plots
+
+``` r
+ggp_weather =   
+  weather_df |> 
+  ggplot(aes(x = tmin, y = tmax)) + 
+  geom_point()
+
+ggp_weather
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](visualization-1_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+``` r
+ggsave("results/ggp_weather.pdf", ggp_weather)
+```
+
+    ## Saving 7 x 5 in image
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
