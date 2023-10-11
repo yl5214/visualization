@@ -118,6 +118,7 @@ ggplot(nyc_weather_df, aes(x = date, y = tmax, color = name)) +
 ## `patchwork`
 
 ```{r}
+weather_df |> 
   ggplot(aes(x = date, y = tmax, color = name)) + 
   geom_point() + 
   facet_grid(. ~ name)
@@ -171,14 +172,13 @@ weather_df |>
 
 ```{r}
 litters_df =
-  read_csv('data/FAS_litters.csv') |> 
-  janitor:: clean_names() |> 
-  seperate(group, into =c('dose', 'day_of_tx'), sep =3)
+  read_csv("data/FAS_litters.csv") |> 
+  janitor::clean_names() |> 
+  separate(group, into = c("dose", "day_of_tx"), sep = 3)
 
-pups_df =
-  litters_df =
-  read_csv('data/FAS_pups.csv') |> 
-  janitor:: clean_names() 
+pups_df = 
+  read_csv("data/FAS_pups.csv") |> 
+  janitor::clean_names()
 
 fas_df =
   left_join(pups_df, litters_df, by = "litter_number")
@@ -191,10 +191,11 @@ fas_df |>
     values_to = "pn_day"
   ) |> 
   drop_na() |> 
-  mutate(outcome =fct_reorder(outcome, pn_day)) |> 
-  ggplot(aes(x=dose, y=pn_day)) +
-  geom_violin() +
-  facet_grid(day_of_tx-outcome)
+  mutate(outcome = fct_reorder(outcome, pn_day)) |> 
+  ggplot(aes(x = dose, y = pn_day)) +
+  geom_violin() + 
+  facet_grid(day_of_tx ~ outcome)
+
 ```
 
-
+This results in a dataframe with `r nrow(weather_df)` observations on six variables.
